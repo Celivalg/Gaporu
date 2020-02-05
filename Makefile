@@ -6,20 +6,17 @@ LDLIBS= -l OpenCL
 
 
 
-all: fractalviewer
+all: gaporu
 
-.PHONY: clean fractalviewer
+.PHONY: clean gaporu
 
-fractalviewer: 
-	+$(MAKE) -C dir1 all
-	+$(MAKE) -C dir2 all
+gaporu: 
+	+$(MAKE) -C renderer all
 
 unit-test:
-	+$(MAKE) -C dir1 unit-test
-	+$(MAKE) -C dir2 unit-test
+	+$(MAKE) -C renderer unit-test
 
 clean:
-	+$(MAKE) -C dir1 clean
-	+$(MAKE) -C dir2 clean
+	+$(MAKE) -C rederer clean
 
 # END
