@@ -9,22 +9,16 @@
 
 #define MAX_SRC_SIZE (0x100000)
 
-typedef struct _coordinates {
-	double x, y, z;
-} coordinates;
-
-typedef struct _angle {
-	double yaw, pitch, roll;
-} angle;
-
+typedef struct _camera {
+	cl_float x, y, z, yaw, pitch;
+} camera;
 
 typedef struct _environment {
 	
-	coordinates* camera_pos;
-	angle* camera_ang;
-	double fov;
-	int size_h;
-	int size_w;
+	camera * cam;
+	float fov;
+	size_t size_h;
+	size_t size_w;
 	cl_context context;
 	cl_device_id device_id;
 	cl_platform_id platform_id;
@@ -38,5 +32,9 @@ GdkPixbuf* render(environment* env);
 environment* create_environment();
 
 void destroy_environment(environment* env);
+
+cl_program compile_program(environment* env, char* src, size_t source_size);
+
+cl_program compile_program_from_source(environment* env, char* source_path);
 
 #endif
